@@ -31,8 +31,17 @@ public class Square {
 
     @Override
     public String toString(){
-        return "Square has four points: " + this.firstPoint.toString() + " - " + this.secondPoint.toString() +
+        return this.firstPoint.toString() + " - " + this.secondPoint.toString() +
                 " - " + this.thirdPoint.toString() + " - " + this.fourthPoint.toString();
+    }
+
+    public boolean equalityCheck(){
+       return ((this.getFirstPoint().equals(this.getSecondPoint()))
+                || (this.getFirstPoint().equals(this.getThirdPoint()))
+                || (this.getFirstPoint().equals(this.getFourthPoint()))
+                || (this.getSecondPoint().equals(this.getThirdPoint()))
+                || (this.getSecondPoint().equals(this.getFourthPoint()))
+                || (this.getThirdPoint().equals(this.getFourthPoint())));
     }
 
     public boolean validationCheck(){

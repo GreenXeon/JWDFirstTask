@@ -23,8 +23,14 @@ public class Triangle implements Validator{
     }
     @Override
     public String toString(){
-        return "Triangle has three points: " + this.firstPoint.toString() + " - " + this.secondPoint.toString() +
+        return this.firstPoint.toString() + " - " + this.secondPoint.toString() +
                 " - " + this.thirdPoint.toString();
+    }
+
+    public boolean equalityCheck(){
+        return ((this.getFirstPoint().equals(this.getSecondPoint()))
+                || (this.getFirstPoint().equals(this.getThirdPoint()))
+                || (this.getSecondPoint().equals(this.getThirdPoint())));
     }
 
     public boolean validationCheck(){

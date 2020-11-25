@@ -17,9 +17,12 @@ public class Line {
         this.secondPoint = secondPoint;
     }
 
+    public boolean equalityCheck(){
+        return this.getFirstPoint().equals(this.getSecondPoint());
+    }
+
     @Override
     public String toString(){
-        return "Line's first point is " + this.firstPoint.toString() + " and second point is "
-        + this.secondPoint.toString();
+        return this.firstPoint.toString() + " - " + this.secondPoint.toString();
     }
 }

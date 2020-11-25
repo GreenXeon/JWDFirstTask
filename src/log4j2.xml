@@ -10,7 +10,7 @@
     </Appenders>
     <Loggers>
         <Logger name="com.epam" level="info">
-            <AppenderRef ref="FileLogging" level="info"/>
+            <AppenderRef ref="FileLogging" level="error"/>
         </Logger>
         <Root level="info">
             <AppenderRef ref="LogToConsole"/>
