@@ -1,0 +1,33 @@
+package com.epam.model;
+
+public class Square {
+    private Point firstPoint;
+    private Point secondPoint;
+    private Point thirdPoint;
+    private Point fourthPoint;
+
+    public Square(Point firstPoint, Point secondPoint, Point thirdPoint, Point fourthPoint){
+        this.firstPoint = firstPoint;
+        this.secondPoint = secondPoint;
+        this.thirdPoint = thirdPoint;
+        this.fourthPoint = fourthPoint;
+    }
+
+    @Override
+    public String toString(){
+        return "Square has four points: " + this.firstPoint.toString() + " - " + this.secondPoint.toString() +
+                " - " + this.thirdPoint.toString() + " - " + this.fourthPoint.toString();
+    }
+
+    public boolean validationCheck(){
+        double firstSide = Math.sqrt(Math.pow(this.secondPoint.getX() - this.firstPoint.getX(), 2) +
+                Math.pow(this.secondPoint.getY() - this.firstPoint.getY(), 2));
+        double secondSide = Math.sqrt(Math.pow(this.thirdPoint.getX() - this.secondPoint.getX(), 2) +
+                Math.pow(this.thirdPoint.getY() - this.secondPoint.getY(), 2));;
+        double thirdSide = Math.sqrt(Math.pow(this.fourthPoint.getX() - this.thirdPoint.getX(), 2) +
+                Math.pow(this.fourthPoint.getY() - this.thirdPoint.getY(), 2));
+        double fourthSide = Math.sqrt(Math.pow(this.firstPoint.getX() - this.fourthPoint.getX(), 2) +
+                Math.pow(this.firstPoint.getY() - this.fourthPoint.getY(), 2));
+        return Math.hypot(firstSide,secondSide) == Math.hypot(thirdSide, fourthSide);
+    }
+}
