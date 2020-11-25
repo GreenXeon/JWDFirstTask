@@ -10,7 +10,17 @@ public class Triangle implements Validator{
         this.secondPoint = secondPoint;
         this.thirdPoint = thirdPoint;
     }
+    public Point getFirstPoint() {
+        return firstPoint;
+    }
 
+    public Point getSecondPoint() {
+        return secondPoint;
+    }
+
+    public Point getThirdPoint() {
+        return thirdPoint;
+    }
     @Override
     public String toString(){
         return "Triangle has three points: " + this.firstPoint.toString() + " - " + this.secondPoint.toString() +

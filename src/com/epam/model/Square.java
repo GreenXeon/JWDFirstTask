@@ -6,6 +6,22 @@ public class Square {
     private Point thirdPoint;
     private Point fourthPoint;
 
+    public Point getFirstPoint() {
+        return firstPoint;
+    }
+
+    public Point getSecondPoint() {
+        return secondPoint;
+    }
+
+    public Point getThirdPoint() {
+        return thirdPoint;
+    }
+
+    public Point getFourthPoint() {
+        return fourthPoint;
+    }
+
     public Square(Point firstPoint, Point secondPoint, Point thirdPoint, Point fourthPoint){
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;

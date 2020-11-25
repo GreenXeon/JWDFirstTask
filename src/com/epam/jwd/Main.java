@@ -24,9 +24,9 @@ public class Main {
     private static void masGeneration(){
         pointMas = new Point[]{
                 new Point(0,0),
-                new Point(0,0),
                 new Point(2,2),
-                new Point(2,0)
+                new Point(2,0),
+                new Point(0,2)
         };
         logger.log(Level.INFO, "ok");
         lineMas = new Line[]{
@@ -59,18 +59,34 @@ public class Main {
         }
 
         for (i = 0; i < 2; i++){
-            if ((triangleMas[i].validationCheck())) {
-                System.out.println(triangleMas[i]);
+            if ((triangleMas[i].getFirstPoint().equals(triangleMas[i].getSecondPoint()))
+            || (triangleMas[i].getFirstPoint().equals(triangleMas[i].getThirdPoint()))
+            || (triangleMas[i].getSecondPoint().equals(triangleMas[i].getThirdPoint()))) {
+                System.out.println("odinakovyi triangle");
             } else {
-                System.out.println("lox");
+                if (!triangleMas[i].validationCheck()){
+                    System.out.println("ne proxodit");
+                } else {
+                    System.out.println("nu norm triangle");
+                }
             }
         }
 
         for (i = 0; i < 1; i++){
-            if (squareMas[i].validationCheck()){
-                System.out.println(squareMas[i]);
+            if ((squareMas[i].getFirstPoint().equals(squareMas[i].getSecondPoint()))
+            || (squareMas[i].getFirstPoint().equals(squareMas[i].getThirdPoint()))
+            || (squareMas[i].getFirstPoint().equals(squareMas[i].getFourthPoint()))
+            || (squareMas[i].getSecondPoint().equals(squareMas[i].getThirdPoint()))
+            || (squareMas[i].getSecondPoint().equals(squareMas[i].getFourthPoint()))
+            || (squareMas[i].getThirdPoint().equals(squareMas[i].getFourthPoint()))){
+                System.out.println("odinakovyi square");
             } else {
-                System.out.println("4mo");
+                if (!squareMas[i].validationCheck()){
+                    System.out.println("bad square");
+                } else {
+                    System.out.println("norm square");
+                }
+
             }
 
         }

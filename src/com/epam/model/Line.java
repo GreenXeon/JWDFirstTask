@@ -8,16 +8,8 @@ public class Line {
         return firstPoint;
     }
 
-    public void setFirstPoint(Point firstPoint) {
-        this.firstPoint = firstPoint;
-    }
-
     public Point getSecondPoint() {
         return secondPoint;
-    }
-
-    public void setSecondPoint(Point secondPoint) {
-        this.secondPoint = secondPoint;
     }
 
     public Line(Point firstPoint, Point secondPoint){
