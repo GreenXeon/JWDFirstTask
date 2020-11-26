@@ -1,10 +1,14 @@
-package com.epam.model;
+package com.epam.jwd.data;
+
+import com.epam.jwd.strategy.SquareInfoStrategy;
+import com.epam.jwd.strategy.Strategy;
 
 public class Square extends Figure implements Validator{
     private Point firstPoint;
     private Point secondPoint;
     private Point thirdPoint;
     private Point fourthPoint;
+    public static Strategy figurePropertiesStrategy = SquareInfoStrategy.getInstance();
 
     public Point getFirstPoint() {
         return firstPoint;

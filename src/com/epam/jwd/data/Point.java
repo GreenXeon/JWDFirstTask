@@ -1,4 +1,4 @@
-package com.epam.model;
+package com.epam.jwd.data;
 
 public class Point extends Figure {
     private int x;

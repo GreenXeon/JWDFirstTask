@@ -1,9 +1,9 @@
-package com.epam.model;
+package com.epam.jwd.data;
 
 import com.epam.jwd.strategy.Strategy;
 
 public class Figure {
-    Strategy figurePropertiesStrategy;
+    public Strategy figurePropertiesStrategy;
     public boolean equalityCheck(){
         return true;
     }

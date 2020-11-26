@@ -1,9 +1,10 @@
 package com.epam.jwd.strategy;
 
-import com.epam.model.Figure;
-import com.epam.model.Line;
+import com.epam.jwd.data.Figure;
+import com.epam.jwd.data.Line;
 
-public class LineInfoStrategy implements Strategy {
+public enum LineInfoStrategy implements Strategy {
+    INSTANCE;
     @Override
     public double findPerimeter(Figure figure) {
         Line obj = (Line)figure;

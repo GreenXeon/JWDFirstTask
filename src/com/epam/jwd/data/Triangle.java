@@ -1,9 +1,13 @@
-package com.epam.model;
+package com.epam.jwd.data;
+
+import com.epam.jwd.strategy.Strategy;
+import com.epam.jwd.strategy.TriangleInfoStrategy;
 
 public class Triangle extends Figure implements Validator{
     private Point firstPoint;
     private Point secondPoint;
     private Point thirdPoint;
+    public static Strategy figurePropertiesStrategy = TriangleInfoStrategy.getInstance();
 
     public Triangle(Point firstPoint, Point secondPoint, Point thirdPoint){
         this.firstPoint = firstPoint;

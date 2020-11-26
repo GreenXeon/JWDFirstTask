@@ -1,13 +1,10 @@
 package com.epam.jwd;
 
-import com.epam.jwd.strategy.Context;
-import com.epam.jwd.strategy.SquareInfoStrategy;
-import com.epam.jwd.strategy.Strategy;
-import com.epam.jwd.strategy.TriangleInfoStrategy;
-import com.epam.model.Line;
-import com.epam.model.Point;
-import com.epam.model.Square;
-import com.epam.model.Triangle;
+import com.epam.jwd.strategy.*;
+import com.epam.jwd.data.Line;
+import com.epam.jwd.data.Point;
+import com.epam.jwd.data.Square;
+import com.epam.jwd.data.Triangle;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,9 +20,16 @@ public class Main {
     public static void main(String[] args) {
         masGeneration();
         cycleInfoOut();
-        Strategy strategy = new SquareInfoStrategy();
-        Context context = new Context(strategy);
-        System.out.println(context.ContextFindSquare(squareMas[0]));
+        Strategy squareStrategy = Square.figurePropertiesStrategy;
+        Strategy triangleStrategy = Triangle.figurePropertiesStrategy;
+        Strategy lineStrategy = Line.figurePropertiesStrategy;
+
+        Context squareContext = new Context(squareStrategy);
+        System.out.println(squareContext.ContextFindSquare(squareMas[0]));
+        Context lineContext = new Context(lineStrategy);
+        System.out.println(lineContext.ContextFindSquare(lineMas[0]));
+        Context triangleContext = new Context(triangleStrategy);
+        System.out.println(triangleContext.ContextFindSquare(triangleMas[0]));
     }
 
     private static void masGeneration(){

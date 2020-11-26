@@ -1,9 +1,19 @@
 package com.epam.jwd.strategy;
 
-import com.epam.model.Figure;
-import com.epam.model.Square;
+import com.epam.jwd.data.Figure;
+import com.epam.jwd.data.Square;
 
 public class SquareInfoStrategy implements Strategy {
+    private static SquareInfoStrategy instance;
+    private SquareInfoStrategy(){
+    }
+    public static SquareInfoStrategy getInstance(){
+        if (instance == null){
+            instance = new SquareInfoStrategy();
+        }
+        return instance;
+    }
+
     private double firstSide;
     private double secondSide;
     private double thirdSide;

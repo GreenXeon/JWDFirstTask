@@ -1,8 +1,12 @@
-package com.epam.model;
+package com.epam.jwd.data;
+
+import com.epam.jwd.strategy.LineInfoStrategy;
+import com.epam.jwd.strategy.Strategy;
 
 public class Line extends Figure {
     private Point firstPoint;
     private Point secondPoint;
+    public static Strategy figurePropertiesStrategy = LineInfoStrategy.INSTANCE;
 
     public Point getFirstPoint() {
         return firstPoint;
