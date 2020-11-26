@@ -1,5 +1,9 @@
 package com.epam.jwd;
 
+import com.epam.jwd.strategy.Context;
+import com.epam.jwd.strategy.SquareInfoStrategy;
+import com.epam.jwd.strategy.Strategy;
+import com.epam.jwd.strategy.TriangleInfoStrategy;
 import com.epam.model.Line;
 import com.epam.model.Point;
 import com.epam.model.Square;
@@ -19,16 +23,18 @@ public class Main {
     public static void main(String[] args) {
         masGeneration();
         cycleInfoOut();
+        Strategy strategy = new SquareInfoStrategy();
+        Context context = new Context(strategy);
+        System.out.println(context.ContextFindSquare(squareMas[0]));
     }
 
     private static void masGeneration(){
         pointMas = new Point[]{
                 new Point(0,0),
-                new Point(1,-1),
-                new Point(-1,1),
-                new Point(-1,6)
+                new Point(0,2),
+                new Point(2,2),
+                new Point(2,0)
         };
-        logger.log(Level.INFO, "ok");
         lineMas = new Line[]{
                 new Line(pointMas[0], pointMas[1]),
                 new Line(pointMas[2], pointMas[3]),

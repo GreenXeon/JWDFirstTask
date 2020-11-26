@@ -1,6 +1,6 @@
 package com.epam.model;
 
-public class Square {
+public class Square extends Figure implements Validator{
     private Point firstPoint;
     private Point secondPoint;
     private Point thirdPoint;
@@ -35,6 +35,7 @@ public class Square {
                 " - " + this.thirdPoint.toString() + " - " + this.fourthPoint.toString();
     }
 
+    @Override
     public boolean equalityCheck(){
        return ((this.getFirstPoint().equals(this.getSecondPoint()))
                 || (this.getFirstPoint().equals(this.getThirdPoint()))
@@ -44,6 +45,7 @@ public class Square {
                 || (this.getThirdPoint().equals(this.getFourthPoint())));
     }
 
+    @Override
     public boolean validationCheck(){
         double firstSide = Math.sqrt(Math.pow(this.secondPoint.getX() - this.firstPoint.getX(), 2) +
                 Math.pow(this.secondPoint.getY() - this.firstPoint.getY(), 2));

@@ -1,6 +1,6 @@
 package com.epam.model;
 
-public class Line {
+public class Line extends Figure {
     private Point firstPoint;
     private Point secondPoint;
 
@@ -17,6 +17,7 @@ public class Line {
         this.secondPoint = secondPoint;
     }
 
+    @Override
     public boolean equalityCheck(){
         return this.getFirstPoint().equals(this.getSecondPoint());
     }
