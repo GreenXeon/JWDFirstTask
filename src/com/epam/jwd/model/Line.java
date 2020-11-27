@@ -1,4 +1,4 @@
-package com.epam.jwd.data;
+package com.epam.jwd.model;
 
 import com.epam.jwd.strategy.LineInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
@@ -16,7 +16,7 @@ public class Line extends Figure {
         return secondPoint;
     }
 
-    public Line(Point firstPoint, Point secondPoint){
+    Line(Point firstPoint, Point secondPoint){
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;
     }

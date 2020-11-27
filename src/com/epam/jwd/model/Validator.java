@@ -1,4 +1,4 @@
-package com.epam.jwd.data;
+package com.epam.jwd.model;
 
 public interface Validator {
     boolean validationCheck();

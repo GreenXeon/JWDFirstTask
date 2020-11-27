@@ -1,6 +1,4 @@
-package com.epam.jwd.module;
-
-import com.epam.jwd.data.Point;
+package com.epam.jwd.model;
 
 public class PointFactory{
     private static Point[] allCreatedPoints = new Point[15];

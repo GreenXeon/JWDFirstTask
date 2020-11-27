@@ -1,7 +1,7 @@
 package com.epam.jwd.strategy;
 
-import com.epam.jwd.data.Figure;
-import com.epam.jwd.data.Line;
+import com.epam.jwd.model.Figure;
+import com.epam.jwd.model.Line;
 
 public enum LineInfoStrategy implements Strategy {
     INSTANCE;

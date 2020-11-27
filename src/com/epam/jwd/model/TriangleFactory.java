@@ -1,7 +1,4 @@
-package com.epam.jwd.module;
-
-import com.epam.jwd.data.Point;
-import com.epam.jwd.data.Triangle;
+package com.epam.jwd.model;
 
 public class TriangleFactory {
     private static Triangle[] allCreatedTriangles = new Triangle[15];

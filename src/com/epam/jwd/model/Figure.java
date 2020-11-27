@@ -1,4 +1,4 @@
-package com.epam.jwd.data;
+package com.epam.jwd.model;
 
 import com.epam.jwd.strategy.Strategy;
 

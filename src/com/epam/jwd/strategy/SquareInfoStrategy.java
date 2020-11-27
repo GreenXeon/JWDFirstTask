@@ -1,7 +1,7 @@
 package com.epam.jwd.strategy;
 
-import com.epam.jwd.data.Figure;
-import com.epam.jwd.data.Square;
+import com.epam.jwd.model.Figure;
+import com.epam.jwd.model.Square;
 
 public class SquareInfoStrategy implements Strategy {
     private static SquareInfoStrategy instance;

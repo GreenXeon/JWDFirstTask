@@ -1,7 +1,4 @@
-package com.epam.jwd.module;
-
-import com.epam.jwd.data.Line;
-import com.epam.jwd.data.Point;
+package com.epam.jwd.model;
 
 public class LineFactory{
     private static Line[] allCreatedLines = new Line[15];

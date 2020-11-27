@@ -1,7 +1,4 @@
-package com.epam.jwd.module;
-
-import com.epam.jwd.data.Point;
-import com.epam.jwd.data.Square;
+package com.epam.jwd.model;
 
 public class SquareFactory{
     private static Square[] allCreatedSquares = new Square[15];

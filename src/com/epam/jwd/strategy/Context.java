@@ -1,6 +1,6 @@
 package com.epam.jwd.strategy;
 
-import com.epam.jwd.data.Figure;
+import com.epam.jwd.model.Figure;
 
 public class Context {
     private Strategy strategy;

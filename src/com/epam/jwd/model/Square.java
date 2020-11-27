@@ -1,4 +1,4 @@
-package com.epam.jwd.data;
+package com.epam.jwd.model;
 
 import com.epam.jwd.strategy.SquareInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
@@ -26,7 +26,7 @@ public class Square extends Figure implements Validator{
         return fourthPoint;
     }
 
-    public Square(Point firstPoint, Point secondPoint, Point thirdPoint, Point fourthPoint){
+    Square(Point firstPoint, Point secondPoint, Point thirdPoint, Point fourthPoint){
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;
         this.thirdPoint = thirdPoint;

@@ -1,10 +1,10 @@
-package com.epam.jwd.data;
+package com.epam.jwd.model;
 
 public class Point extends Figure {
     private int x;
     private int y;
 
-    public Point(int x, int y){
+    Point(int x, int y){
         this.x = x;
         this.y = y;
     }
