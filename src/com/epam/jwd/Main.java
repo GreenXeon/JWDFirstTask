@@ -1,5 +1,6 @@
 package com.epam.jwd;
 
+import com.epam.jwd.module.SquareFactory;
 import com.epam.jwd.strategy.*;
 import com.epam.jwd.data.Line;
 import com.epam.jwd.data.Point;
@@ -30,6 +31,9 @@ public class Main {
         System.out.println(lineContext.ContextFindSquare(lineMas[0]));
         Context triangleContext = new Context(triangleStrategy);
         System.out.println(triangleContext.ContextFindSquare(triangleMas[0]));
+
+        Square s1 = SquareFactory.createFigure(pointMas[0], pointMas[1], pointMas[2], pointMas[3]);
+        Square s2 = SquareFactory.createFigure(pointMas[0], pointMas[1], pointMas[2], pointMas[3]);
     }
 
     private static void masGeneration(){
