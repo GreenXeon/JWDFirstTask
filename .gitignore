@@ -3,4 +3,3 @@ out/
 .idea/
 *.log
 *.iml
-src/*.xml

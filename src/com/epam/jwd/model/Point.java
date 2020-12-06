@@ -1,6 +1,6 @@
 package com.epam.jwd.model;
 
-public class Point extends Figure {
+public class Point{
     private int x;
     private int y;
 
@@ -27,15 +27,8 @@ public class Point extends Figure {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 }

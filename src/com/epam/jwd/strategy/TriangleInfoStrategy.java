@@ -3,7 +3,7 @@ package com.epam.jwd.strategy;
 import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.Triangle;
 
-public class TriangleInfoStrategy implements Strategy {
+public final class TriangleInfoStrategy implements Strategy {
     private static TriangleInfoStrategy instance = new TriangleInfoStrategy();
     private TriangleInfoStrategy(){
     }

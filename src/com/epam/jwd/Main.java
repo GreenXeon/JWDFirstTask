@@ -6,43 +6,50 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DecimalFormat;
+
 public class Main {
 
     private static Point[] pointMas;
-    private static Line[] lineMas;
-    private static Triangle[] triangleMas;
-    private static Square[] squareMas;
+    private static Figure[] lineMas;
+    private static Figure[] triangleMas;
+    private static Figure[] squareMas;
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         masGeneration();
-        cycleInfoOut();
+        //cycleInfoOut();
         strategyContextTest();
+        multiAngleCreator();
     }
 
-    public static void multiAngleCreator(){
-         MultiAngleFigure fourAngle = new MultiAngleFigure(
+    private static void multiAngleCreator(){
+        Figure fiveAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
+                 PointFactory.createFigure(0, 0),
+                 PointFactory.createFigure(1, 5),
+                 PointFactory.createFigure(3, 9),
+                 PointFactory.createFigure(7, -5),
+                 PointFactory.createFigure(9, 4));
+        Figure sixAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
                 PointFactory.createFigure(0, 0),
                 PointFactory.createFigure(1, 5),
                 PointFactory.createFigure(3, 9),
                 PointFactory.createFigure(7, -5),
-                PointFactory.createFigure(9, 4)
-         );
+                PointFactory.createFigure(9, 4),
+                PointFactory.createFigure(3, -2));
     }
 
     private static void strategyContextTest()
     {
-        Strategy squareStrategy = Square.figurePropertiesStrategy;
-        Strategy triangleStrategy = Triangle.figurePropertiesStrategy;
-        Strategy lineStrategy = Line.figurePropertiesStrategy;
-
-        Context squareContext = new Context(squareStrategy);
-        System.out.println(squareContext.ContextFindSquare(squareMas[0]));
-        Context lineContext = new Context(lineStrategy);
-        System.out.println(lineContext.ContextFindSquare(lineMas[0]));
-        Context triangleContext = new Context(triangleStrategy);
-        System.out.println(triangleContext.ContextFindSquare(triangleMas[0]));
+        Strategy currentStrategy = LineInfoStrategy.INSTANCE;
+        DecimalFormat dF = new DecimalFormat("##.##");
+        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(lineMas[0])));
+        currentStrategy = TriangleInfoStrategy.getInstance();
+        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(triangleMas[1])));
+        currentStrategy = SquareInfoStrategy.getInstance();
+        logger.log(Level.INFO, dF.format(currentStrategy.findSquare(squareMas[0])));
     }
+
     private static void masGeneration(){
         pointMas = new Point[]{
                 PointFactory.createFigure(0, 0),
@@ -50,16 +57,16 @@ public class Main {
                 PointFactory.createFigure(2, 2),
                 PointFactory.createFigure(2, 0)
         };
-        lineMas = new Line[]{
-                LineFactory.createFigure(pointMas[0], pointMas[1]),
-                LineFactory.createFigure(pointMas[2], pointMas[3])
+        lineMas = new Figure[]{
+                FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
+                FigureFactory.createFigure(FigureType.LINE, pointMas[2], pointMas[3])
         };
-        triangleMas = new Triangle[]{
-                TriangleFactory.createFigure(pointMas[0], pointMas[1], pointMas[2]),
-                TriangleFactory.createFigure(pointMas[1], pointMas[2], pointMas[3])
+        triangleMas = new Figure[]{
+                FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
+                FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
         };
-        squareMas = new Square[]{
-                SquareFactory.createFigure(pointMas[0], pointMas[1], pointMas[2], pointMas[3])
+        squareMas = new Figure[]{
+                FigureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
         };
     }
 

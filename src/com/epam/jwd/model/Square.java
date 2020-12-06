@@ -3,7 +3,7 @@ package com.epam.jwd.model;
 import com.epam.jwd.strategy.SquareInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
 
-public class Square extends Figure implements Validator{
+public class Square extends Figure{
     private Point firstPoint;
     private Point secondPoint;
     private Point thirdPoint;

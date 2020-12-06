@@ -5,6 +5,7 @@ import com.epam.jwd.model.Line;
 
 public enum LineInfoStrategy implements Strategy {
     INSTANCE;
+
     @Override
     public double findPerimeter(Figure figure) {
         Line obj = (Line)figure;
