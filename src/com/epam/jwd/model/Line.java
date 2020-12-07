@@ -6,6 +6,7 @@ import com.epam.jwd.strategy.Strategy;
 public class Line extends Figure {
     private Point firstPoint;
     private Point secondPoint;
+    private final Point[] points;
     public static Strategy figurePropertiesStrategy = LineInfoStrategy.INSTANCE;
 
     public Point getFirstPoint() {
@@ -16,11 +17,13 @@ public class Line extends Figure {
         return secondPoint;
     }
 
-    Line(Point firstPoint, Point secondPoint){
-        this.firstPoint = firstPoint;
-        this.secondPoint = secondPoint;
+    Line(Point[] points){
+        this.points = points;
     }
 
+    public Point[] getPoints() {
+        return points;
+    }
     @Override
     public boolean equalityCheck(){
         return this.getFirstPoint().equals(this.getSecondPoint());
@@ -29,5 +32,10 @@ public class Line extends Figure {
     @Override
     public String toString(){
         return this.firstPoint.toString() + " - " + this.secondPoint.toString();
+    }
+
+    @Override
+    public int numOfPoints(){
+        return 2;
     }
 }

@@ -18,12 +18,12 @@ public final class TriangleInfoStrategy implements Strategy {
     @Override
     public double findPerimeter(Figure figure) {
         Triangle obj = (Triangle)figure;
-        firstSide = Math.sqrt(Math.pow(obj.getSecondPoint().getX() - obj.getFirstPoint().getX(), 2) +
-                Math.pow(obj.getSecondPoint().getY() - obj.getFirstPoint().getY(), 2));
-        secondSide = Math.sqrt(Math.pow(obj.getThirdPoint().getX() - obj.getFirstPoint().getX(), 2) +
-                Math.pow(obj.getThirdPoint().getY() - obj.getFirstPoint().getY(), 2));;
-        thirdSide = Math.sqrt(Math.pow(obj.getThirdPoint().getX() - obj.getSecondPoint().getX(), 2) +
-                Math.pow(obj.getThirdPoint().getY() - obj.getSecondPoint().getY(), 2));
+        firstSide = Math.sqrt(Math.pow(obj.getPoints()[1].getX() - obj.getPoints()[0].getX(), 2) +
+                Math.pow(obj.getPoints()[1].getY() - obj.getPoints()[0].getY(), 2));
+        secondSide = Math.sqrt(Math.pow(obj.getPoints()[2].getX() - obj.getPoints()[0].getX(), 2) +
+                Math.pow(obj.getPoints()[2].getY() - obj.getPoints()[0].getY(), 2));;
+        thirdSide = Math.sqrt(Math.pow(obj.getPoints()[2].getX() - obj.getPoints()[1].getX(), 2) +
+                Math.pow(obj.getPoints()[2].getY() - obj.getPoints()[1].getY(), 2));
         return firstSide + secondSide + thirdSide;
     }
 

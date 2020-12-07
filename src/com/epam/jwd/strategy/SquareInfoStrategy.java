@@ -20,24 +20,24 @@ public final class SquareInfoStrategy implements Strategy {
     @Override
     public double findPerimeter(Figure figure) {
         Square obj = (Square)figure;
-        firstSide = Math.sqrt(Math.pow(obj.getSecondPoint().getX() - obj.getFirstPoint().getX(), 2) +
-                Math.pow(obj.getSecondPoint().getY() - obj.getFirstPoint().getY(), 2));
-        secondSide = Math.sqrt(Math.pow(obj.getThirdPoint().getX() - obj.getSecondPoint().getX(), 2) +
-                Math.pow(obj.getThirdPoint().getY() - obj.getSecondPoint().getY(), 2));
-        double thirdSide = Math.sqrt(Math.pow(obj.getFourthPoint().getX() - obj.getThirdPoint().getX(), 2) +
-                Math.pow(obj.getFourthPoint().getY() - obj.getThirdPoint().getY(), 2));
-        double fourthSide = Math.sqrt(Math.pow(obj.getFirstPoint().getX() - obj.getFourthPoint().getX(), 2) +
-                Math.pow(obj.getFirstPoint().getY() - obj.getFourthPoint().getY(), 2));
+        firstSide = Math.sqrt(Math.pow(obj.getPoints()[1].getX() - obj.getPoints()[0].getX(), 2) +
+                Math.pow(obj.getPoints()[1].getY() - obj.getPoints()[0].getY(), 2));
+        secondSide = Math.sqrt(Math.pow(obj.getPoints()[2].getX() - obj.getPoints()[1].getX(), 2) +
+                Math.pow(obj.getPoints()[2].getY() - obj.getPoints()[1].getY(), 2));
+        double thirdSide = Math.sqrt(Math.pow(obj.getPoints()[3].getX() - obj.getPoints()[2].getX(), 2) +
+                Math.pow(obj.getPoints()[3].getY() - obj.getPoints()[2].getY(), 2));
+        double fourthSide = Math.sqrt(Math.pow(obj.getPoints()[0].getX() - obj.getPoints()[3].getX(), 2) +
+                Math.pow(obj.getPoints()[0].getY() - obj.getPoints()[3].getY(), 2));
         return firstSide + secondSide + thirdSide + fourthSide;
     }
 
     @Override
     public double findSquare(Figure figure) {
         Square obj = (Square)figure;
-        firstSide = Math.sqrt(Math.pow(obj.getSecondPoint().getX() - obj.getFirstPoint().getX(), 2) +
-                Math.pow(obj.getSecondPoint().getY() - obj.getFirstPoint().getY(), 2));
-        secondSide = Math.sqrt(Math.pow(obj.getThirdPoint().getX() - obj.getSecondPoint().getX(), 2) +
-                Math.pow(obj.getThirdPoint().getY() - obj.getSecondPoint().getY(), 2));
+        firstSide = Math.sqrt(Math.pow(obj.getPoints()[1].getX() - obj.getPoints()[0].getX(), 2) +
+                Math.pow(obj.getPoints()[1].getY() - obj.getPoints()[0].getY(), 2));
+        secondSide = Math.sqrt(Math.pow(obj.getPoints()[2].getX() - obj.getPoints()[1].getX(), 2) +
+                Math.pow(obj.getPoints()[2].getY() - obj.getPoints()[1].getY(), 2));
         return firstSide * secondSide;
     }
 }

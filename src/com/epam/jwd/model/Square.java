@@ -26,11 +26,14 @@ public class Square extends Figure{
         return fourthPoint;
     }
 
-    Square(Point firstPoint, Point secondPoint, Point thirdPoint, Point fourthPoint){
-        this.firstPoint = firstPoint;
-        this.secondPoint = secondPoint;
-        this.thirdPoint = thirdPoint;
-        this.fourthPoint = fourthPoint;
+    private final Point[] points;
+
+    public Point[] getPoints() {
+        return points;
+    }
+
+    Square(Point[] points){
+        this.points = points;
     }
 
     @Override
@@ -60,5 +63,10 @@ public class Square extends Figure{
         double fourthSide = Math.sqrt(Math.pow(this.firstPoint.getX() - this.fourthPoint.getX(), 2) +
                 Math.pow(this.firstPoint.getY() - this.fourthPoint.getY(), 2));
         return Math.hypot(firstSide,secondSide) == Math.hypot(thirdSide, fourthSide);
+    }
+
+    @Override
+    public int numOfPoints(){
+        return 4;
     }
 }

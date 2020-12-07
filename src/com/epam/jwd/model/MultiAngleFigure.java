@@ -10,4 +10,9 @@ public class MultiAngleFigure extends Figure {
     public Point[] getPoints() {
         return points;
     }
+
+    @Override
+    public int numOfPoints(){
+        return points.length;
+    }
 }

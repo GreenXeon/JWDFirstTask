@@ -9,12 +9,6 @@ public class Triangle extends Figure {
     private Point thirdPoint;
     public static Strategy figurePropertiesStrategy = TriangleInfoStrategy.getInstance();
 
-    Triangle(Point firstPoint, Point secondPoint, Point thirdPoint) {
-        this.firstPoint = firstPoint;
-        this.secondPoint = secondPoint;
-        this.thirdPoint = thirdPoint;
-    }
-
     public Point getFirstPoint() {
         return firstPoint;
     }
@@ -25,6 +19,16 @@ public class Triangle extends Figure {
 
     public Point getThirdPoint() {
         return thirdPoint;
+    }
+
+    private final Point[] points;
+
+    public Point[] getPoints() {
+        return points;
+    }
+
+    Triangle(Point[] points){
+        this.points = points;
     }
 
     @Override
@@ -51,5 +55,10 @@ public class Triangle extends Figure {
                 Math.pow(this.thirdPoint.getY() - this.secondPoint.getY(), 2));
         return (firstSide + secondSide > thirdSide) && (firstSide + thirdSide > secondSide)
                 && (secondSide + thirdSide > firstSide);
+    }
+
+    @Override
+    public int numOfPoints(){
+        return 3;
     }
 }

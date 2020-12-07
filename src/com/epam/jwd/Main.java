@@ -59,7 +59,7 @@ public class Main {
         };
         lineMas = new Figure[]{
                 FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
-                FigureFactory.createFigure(FigureType.LINE, pointMas[2], pointMas[3])
+                FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1])
         };
         triangleMas = new Figure[]{
                 FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),

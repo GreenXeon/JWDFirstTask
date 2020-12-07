@@ -9,8 +9,8 @@ public enum LineInfoStrategy implements Strategy {
     @Override
     public double findPerimeter(Figure figure) {
         Line obj = (Line)figure;
-        return Math.sqrt(Math.pow(obj.getSecondPoint().getX() - obj.getFirstPoint().getX(), 2)
-        + Math.pow(obj.getSecondPoint().getY() - obj.getFirstPoint().getY(), 2));
+        return Math.sqrt(Math.pow(obj.getPoints()[1].getX() - obj.getPoints()[0].getX(), 2)
+        + Math.pow(obj.getPoints()[1].getY() - obj.getPoints()[0].getY(), 2));
     }
 
     @Override
