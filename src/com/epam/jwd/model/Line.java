@@ -26,12 +26,12 @@ public class Line extends Figure {
     }
     @Override
     public boolean equalityCheck(){
-        return this.getFirstPoint().equals(this.getSecondPoint());
+        return this.getPoints()[0].equals(this.getPoints()[1]);
     }
 
     @Override
     public String toString(){
-        return this.firstPoint.toString() + " - " + this.secondPoint.toString();
+        return this.getPoints()[0].toString() + " - " + this.getPoints()[1].toString();
     }
 
     @Override

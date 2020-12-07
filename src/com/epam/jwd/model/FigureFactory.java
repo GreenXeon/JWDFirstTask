@@ -1,9 +1,11 @@
 package com.epam.jwd.model;
 
+import com.epam.jwd.exception.FigureException;
 import com.epam.jwd.exception.FigureNotExistException;
+import com.epam.jwd.service.impl.FigureExistencePostProcessor;
 import com.epam.jwd.strategy.Strategy;
 
-public abstract class FigureFactory {
+public abstract class FigureFactory{
     private static Figure[] allCreatedFigures = new Figure[64];
     private static int amountOfFigures = 0;
     private Strategy figurePropertiesStrategy;
@@ -16,10 +18,14 @@ public abstract class FigureFactory {
         this.figurePropertiesStrategy = figurePropertiesStrategy;
     }
 
-    public static Figure createFigure(FigureType type, Point ... points) {
+    public static Figure createFigure(FigureType type, Point ... points) throws FigureNotExistException{
+        FigureExistencePostProcessor existencePostProcessor = new FigureExistencePostProcessor();
         int equalPointCounter = 0;
         Figure toReturn = null;
 
+        if (points.length < 2){
+            throw new FigureNotExistException("Amount of points must equal or more than 2");
+        }
         for(Figure cachedFigure : allCreatedFigures){
             if (cachedFigure!= null && cachedFigure.numOfPoints() == points.length){
                 Point[] arrCached = cachedFigure.getPoints();
@@ -31,7 +37,6 @@ public abstract class FigureFactory {
                     }
                 }
                 if (equalPointCounter == points.length){
-                    System.out.println("exists");
                     return cachedFigure;
                 }
             }
@@ -52,9 +57,15 @@ public abstract class FigureFactory {
             default:
                 throw new IllegalArgumentException("Wrong figure name: " + type);
         }
+
+        try {
+            toReturn = existencePostProcessor.process(toReturn);
+        }
+        catch (FigureException e){
+            e.printStackTrace();
+        }
         allCreatedFigures[amountOfFigures] = toReturn;
         amountOfFigures++;
-        System.out.println("new");
         return toReturn;
     }
 }

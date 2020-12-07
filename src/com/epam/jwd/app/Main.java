@@ -1,5 +1,6 @@
-package com.epam.jwd;
+package com.epam.jwd.app;
 
+import com.epam.jwd.exception.FigureNotExistException;
 import com.epam.jwd.model.*;
 import com.epam.jwd.strategy.*;
 import org.apache.logging.log4j.Level;
@@ -18,25 +19,30 @@ public class Main {
 
     public static void main(String[] args) {
         masGeneration();
-        //cycleInfoOut();
+        cycleInfoOut();
         strategyContextTest();
         multiAngleCreator();
     }
 
     private static void multiAngleCreator(){
-        Figure fiveAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
-                 PointFactory.createFigure(0, 0),
-                 PointFactory.createFigure(1, 5),
-                 PointFactory.createFigure(3, 9),
-                 PointFactory.createFigure(7, -5),
-                 PointFactory.createFigure(9, 4));
-        Figure sixAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
-                PointFactory.createFigure(0, 0),
-                PointFactory.createFigure(1, 5),
-                PointFactory.createFigure(3, 9),
-                PointFactory.createFigure(7, -5),
-                PointFactory.createFigure(9, 4),
-                PointFactory.createFigure(3, -2));
+        try {
+            Figure fiveAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
+                    PointFactory.createFigure(0, 0),
+                    PointFactory.createFigure(1, 5),
+                    PointFactory.createFigure(3, 9),
+                    PointFactory.createFigure(7, -5),
+                    PointFactory.createFigure(9, 4));
+            Figure sixAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
+                    PointFactory.createFigure(0, 0),
+                    PointFactory.createFigure(1, 5),
+                    PointFactory.createFigure(3, 9),
+                    PointFactory.createFigure(7, -5),
+                    PointFactory.createFigure(9, 4),
+                    PointFactory.createFigure(3, -2));
+        }
+        catch (FigureNotExistException e){
+            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
+        }
     }
 
     private static void strategyContextTest()
@@ -57,17 +63,37 @@ public class Main {
                 PointFactory.createFigure(2, 2),
                 PointFactory.createFigure(2, 0)
         };
-        lineMas = new Figure[]{
-                FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
-                FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1])
-        };
-        triangleMas = new Figure[]{
-                FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
-                FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
-        };
-        squareMas = new Figure[]{
-                FigureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
-        };
+        try {
+            lineMas = new Figure[]{
+                    FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
+                    FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1])
+            };
+        }
+        catch(FigureNotExistException e){
+            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            triangleMas = new Figure[]{
+                    FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
+                    FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
+            };
+        }
+        catch(FigureNotExistException e){
+            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            squareMas = new Figure[]{
+                    FigureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
+            };
+        }
+        catch (FigureNotExistException e){
+            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
+            e.printStackTrace();
+        }
     }
 
     private static void cycleInfoOut(){
@@ -104,7 +130,7 @@ public class Main {
                 if (!squareMas[i].validationCheck()){
                     logger.log(Level.ERROR, "Object " + squareMas[i].toString() + " isn't a square");
                 } else {
-                    logger.log(Level.INFO, "Square has points " + triangleMas[i].toString());
+                    logger.log(Level.INFO, "Square has points " + squareMas[i].toString());
                 }
             }
         }
