@@ -1,11 +1,13 @@
 package com.epam.jwd.app;
 
+import com.epam.jwd.exception.FigureException;
 import com.epam.jwd.exception.FigureNotExistException;
 import com.epam.jwd.model.*;
 import com.epam.jwd.strategy.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+//import com.epam.jwd.factory.FigureFactory;
 
 import java.text.DecimalFormat;
 
@@ -57,6 +59,8 @@ public class Main {
     }
 
     private static void masGeneration(){
+        ApplicationContext applicationContext = new ApplicationContext();
+        com.epam.jwd.factory.FigureFactory figureFactory = applicationContext.createFigureFactory();
         pointMas = new Point[]{
                 PointFactory.createFigure(0, 0),
                 PointFactory.createFigure(0, 2),
@@ -65,11 +69,10 @@ public class Main {
         };
         try {
             lineMas = new Figure[]{
-                    FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
-                    FigureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1])
+                    figureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
+                    figureFactory.createFigure(FigureType.LINE, pointMas[1], pointMas[2])
             };
-        }
-        catch(FigureNotExistException e){
+        } catch(FigureException e){
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
             e.printStackTrace();
         }
