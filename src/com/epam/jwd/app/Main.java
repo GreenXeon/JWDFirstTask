@@ -1,13 +1,19 @@
 package com.epam.jwd.app;
 
 import com.epam.jwd.exception.FigureException;
-import com.epam.jwd.exception.FigureNotExistException;
-import com.epam.jwd.model.*;
-import com.epam.jwd.strategy.*;
+import com.epam.jwd.factory.FigureFactory;
+import com.epam.jwd.model.ApplicationContext;
+import com.epam.jwd.model.Figure;
+import com.epam.jwd.model.FigureType;
+import com.epam.jwd.model.Point;
+import com.epam.jwd.model.PointFactory;
+import com.epam.jwd.strategy.LineInfoStrategy;
+import com.epam.jwd.strategy.SquareInfoStrategy;
+import com.epam.jwd.strategy.Strategy;
+import com.epam.jwd.strategy.TriangleInfoStrategy;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import com.epam.jwd.factory.FigureFactory;
 
 import java.text.DecimalFormat;
 
@@ -18,6 +24,8 @@ public class Main {
     private static Figure[] triangleMas;
     private static Figure[] squareMas;
     private static final Logger logger = LogManager.getLogger(Main.class);
+    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static FigureFactory figureFactory = applicationContext.createFigureFactory();
 
     public static void main(String[] args) {
         masGeneration();
@@ -28,13 +36,13 @@ public class Main {
 
     private static void multiAngleCreator(){
         try {
-            Figure fiveAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
+            Figure fiveAngle = figureFactory.createFigure(FigureType.MULTIANGLE,
                     PointFactory.createFigure(0, 0),
                     PointFactory.createFigure(1, 5),
                     PointFactory.createFigure(3, 9),
                     PointFactory.createFigure(7, -5),
                     PointFactory.createFigure(9, 4));
-            Figure sixAngle = FigureFactory.createFigure(FigureType.MULTIANGLE,
+            Figure sixAngle = figureFactory.createFigure(FigureType.MULTIANGLE,
                     PointFactory.createFigure(0, 0),
                     PointFactory.createFigure(1, 5),
                     PointFactory.createFigure(3, 9),
@@ -42,7 +50,7 @@ public class Main {
                     PointFactory.createFigure(9, 4),
                     PointFactory.createFigure(3, -2));
         }
-        catch (FigureNotExistException e){
+        catch (FigureException e){
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
         }
     }
@@ -59,8 +67,6 @@ public class Main {
     }
 
     private static void masGeneration(){
-        ApplicationContext applicationContext = new ApplicationContext();
-        com.epam.jwd.factory.FigureFactory figureFactory = applicationContext.createFigureFactory();
         pointMas = new Point[]{
                 PointFactory.createFigure(0, 0),
                 PointFactory.createFigure(0, 2),
@@ -79,21 +85,21 @@ public class Main {
 
         try {
             triangleMas = new Figure[]{
-                    FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
-                    FigureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
+                    figureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
+                    figureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
             };
         }
-        catch(FigureNotExistException e){
+        catch(FigureException e){
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
             e.printStackTrace();
         }
 
         try {
             squareMas = new Figure[]{
-                    FigureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
+                    figureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
             };
         }
-        catch (FigureNotExistException e){
+        catch (FigureException e){
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
             e.printStackTrace();
         }

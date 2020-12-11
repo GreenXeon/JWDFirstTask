@@ -22,7 +22,7 @@ public class SimpleFigureFactory implements FigureFactory {
                 toReturn = new MultiAngleFigure(figureConstituents);
                 break;
             default:
-                throw new IllegalArgumentException("Wrong figure name: " + type);
+                throw new FigureException("Wrong figure name: " + type);
         }
         return toReturn;
     }
