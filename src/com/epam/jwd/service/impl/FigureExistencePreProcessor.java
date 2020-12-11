@@ -5,7 +5,7 @@ import com.epam.jwd.exception.FigureNotExistException;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.service.FigurePreProcessor;
 
-public class FigureExistencePreProcessor implements FigurePreProcessor {
+public final class FigureExistencePreProcessor implements FigurePreProcessor {
     private static FigureExistencePreProcessor instance;
     private FigureExistencePreProcessor(){
     }

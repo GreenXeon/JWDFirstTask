@@ -8,7 +8,7 @@ import com.epam.jwd.model.Point;
 import com.epam.jwd.model.Triangle;
 import com.epam.jwd.service.FigurePostProcessor;
 
-public class FigureExistencePostProcessor implements FigurePostProcessor {
+public final class FigureExistencePostProcessor implements FigurePostProcessor {
     private static FigureExistencePostProcessor instance;
     private FigureExistencePostProcessor(){
     }
