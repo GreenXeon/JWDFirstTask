@@ -6,6 +6,6 @@ import com.epam.jwd.factory.FigureFactory;
 
 public class ApplicationContext {
     public FigureFactory createFigureFactory(){
-        return new PostProcessingFactory(new PreProcessingFactory(new SimpleFigureFactory()));
+        return new PostProcessingFactory(new PreProcessingFactory(SimpleFigureFactory.getInstance()));
     }
 }

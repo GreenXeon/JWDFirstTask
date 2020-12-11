@@ -4,6 +4,15 @@ import com.epam.jwd.exception.FigureException;
 import com.epam.jwd.factory.FigureFactory;
 
 public class SimpleFigureFactory implements FigureFactory {
+    private static SimpleFigureFactory instance;
+    private SimpleFigureFactory(){
+    }
+    public static SimpleFigureFactory getInstance(){
+        if (instance == null){
+            instance = new SimpleFigureFactory();
+        }
+        return instance;
+    }
 
     @Override
     public Figure createFigure(FigureType type, Point ... figureConstituents) throws FigureException {
