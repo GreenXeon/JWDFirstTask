@@ -10,7 +10,7 @@ import com.epam.jwd.service.FigurePostProcessor;
 import com.epam.jwd.service.impl.FigureExistencePostProcessor;
 
 public class PostProcessingFactory extends FigureFactoryDecorator {
-    private FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{new FigureExistencePostProcessor()};
+    private FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{FigureExistencePostProcessor.getInstance()};
     private FigureFactory figureFactory;
 
     public PostProcessingFactory(FigureFactory figureFactory) {

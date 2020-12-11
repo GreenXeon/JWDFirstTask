@@ -5,14 +5,25 @@ import com.epam.jwd.exception.FigureNotExistException;
 import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.Line;
 import com.epam.jwd.model.Point;
+import com.epam.jwd.model.Triangle;
 import com.epam.jwd.service.FigurePostProcessor;
 
 public class FigureExistencePostProcessor implements FigurePostProcessor {
+    private static FigureExistencePostProcessor instance;
+    private FigureExistencePostProcessor(){
+    }
+    public static FigureExistencePostProcessor getInstance(){
+        if (instance == null){
+            instance = new FigureExistencePostProcessor();
+        }
+        return instance;
+    }
 
     @Override
     public Figure process(Figure figure) throws FigureException {
-        if (figure instanceof Line)
+        if (figure instanceof Line){
             return figure;
+        }
         int equalX = 1;
         int equalY = 1;
         Point[] points = figure.getPoints();
@@ -27,13 +38,9 @@ public class FigureExistencePostProcessor implements FigurePostProcessor {
                 }
             }
         }
-        if (equalX == figure.numOfPoints() || equalY == figure.numOfPoints()){
+        if (equalX == figure.numOfPoints() || equalY == figure.numOfPoints()){ //todo:multiangles
             throw new FigureNotExistException("Figure can't exist");
         }
-
-        /*if(!figure.validationCheck()){
-            throw new FigureException("Figure can't exist");
-        }*/
         return figure;
     }
 }

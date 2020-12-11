@@ -19,7 +19,7 @@ public abstract class FigureFactory{
     }
 
     public static Figure createFigure(FigureType type, Point ... points) throws FigureNotExistException{
-        FigureExistencePostProcessor existencePostProcessor = new FigureExistencePostProcessor();
+        FigureExistencePostProcessor existencePostProcessor = FigureExistencePostProcessor.getInstance();
         int equalPointCounter = 0;
         Figure toReturn = null;
 

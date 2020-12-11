@@ -13,7 +13,7 @@ import com.epam.jwd.service.impl.FigureExistencePreProcessor;
 
 public class PreProcessingFactory extends FigureFactoryDecorator {
     private FigureFactory figureFactory;
-    private FigurePreProcessor[] preProcessors = new FigurePreProcessor[]{new FigureExistencePreProcessor()};
+    private FigurePreProcessor[] preProcessors = new FigurePreProcessor[]{FigureExistencePreProcessor.getInstance()};
 
     public PreProcessingFactory(FigureFactory figureFactory) {
         this.figureFactory = figureFactory;

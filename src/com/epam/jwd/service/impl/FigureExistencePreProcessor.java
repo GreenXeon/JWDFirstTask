@@ -6,6 +6,15 @@ import com.epam.jwd.model.Point;
 import com.epam.jwd.service.FigurePreProcessor;
 
 public class FigureExistencePreProcessor implements FigurePreProcessor {
+    private static FigureExistencePreProcessor instance;
+    private FigureExistencePreProcessor(){
+    }
+    public static FigureExistencePreProcessor getInstance(){
+        if (instance == null){
+            instance = new FigureExistencePreProcessor();
+        }
+        return instance;
+    }
 
     @Override
     public void preProcess(Point... points) throws FigureException {
