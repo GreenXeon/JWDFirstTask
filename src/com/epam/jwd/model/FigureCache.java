@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-final class FigureStorage {
-    private static FigureStorage instance;
-    private FigureStorage(){
+final class FigureCache {
+    private static FigureCache instance;
+    private FigureCache(){
     }
-    public static FigureStorage getInstance(){
+    public static FigureCache getInstance(){
         if (instance == null){
-            instance = new FigureStorage();
+            instance = new FigureCache();
         }
         return instance;
     }

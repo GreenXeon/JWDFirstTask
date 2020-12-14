@@ -26,10 +26,14 @@ public class Square extends Figure{
         return fourthPoint;
     }
 
-    private final Point[] points;
+    private Point[] points;
 
     public Point[] getPoints() {
         return points;
+    }
+
+    public void setPoints(Point[] points) {
+        this.points = points;
     }
 
     Square(Point[] points){

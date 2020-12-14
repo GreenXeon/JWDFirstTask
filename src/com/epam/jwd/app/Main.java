@@ -7,6 +7,7 @@ import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.FigureType;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.model.PointFactory;
+import com.epam.jwd.service.impl.FigureCrudService;
 import com.epam.jwd.strategy.LineInfoStrategy;
 import com.epam.jwd.strategy.SquareInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
@@ -20,134 +21,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-
-    private static Point[] pointMas;
-    private static Figure[] lineMas;
-    private static Figure[] triangleMas;
-    private static Figure[] squareMas;
+    private static List<Point> pointList = new ArrayList<>();
+    private static List<Figure> figureList = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger(Main.class);
     private static ApplicationContext applicationContext = new ApplicationContext();
     private static FigureFactory figureFactory = applicationContext.createFigureFactory();
+    private static FigureCrudService figureCrudService = FigureCrudService.getInstance();
 
     public static void main(String[] args) {
-        masGeneration();
-        cycleInfoOut();
+        dataGeneration();
         strategyContextTest();
-        multiAngleCreator();
-    }
-
-    private static void multiAngleCreator(){
-        try {
-            Figure fiveAngle = figureFactory.createFigure(FigureType.MULTIANGLE,
-                    PointFactory.createFigure(0, 0),
-                    PointFactory.createFigure(1, 5),
-                    PointFactory.createFigure(3, 9),
-                    PointFactory.createFigure(7, -5),
-                    PointFactory.createFigure(9, 4));
-            Figure sixAngle = figureFactory.createFigure(FigureType.MULTIANGLE,
-                    PointFactory.createFigure(0, 0),
-                    PointFactory.createFigure(1, 5),
-                    PointFactory.createFigure(3, 9),
-                    PointFactory.createFigure(7, -5),
-                    PointFactory.createFigure(9, 4),
-                    PointFactory.createFigure(3, -2));
-        }
-        catch (FigureException e){
-            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
-        }
+        Figure sample = figureCrudService.findById(0);
     }
 
     private static void strategyContextTest()
     {
         Strategy currentStrategy = LineInfoStrategy.INSTANCE;
         DecimalFormat dF = new DecimalFormat("##.##");
-        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(lineMas[0])));
+        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(figureList.get(0))));
         currentStrategy = TriangleInfoStrategy.getInstance();
-        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(triangleMas[1])));
+        logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(figureList.get(2))));
         currentStrategy = SquareInfoStrategy.getInstance();
-        logger.log(Level.INFO, dF.format(currentStrategy.findSquare(squareMas[0])));
+        logger.log(Level.INFO, dF.format(currentStrategy.findSquare(figureList.get(4))));
     }
 
-    private static void masGeneration(){
-        pointMas = new Point[]{
-                PointFactory.createFigure(0, 0),
-                PointFactory.createFigure(0, 2),
-                PointFactory.createFigure(2, 2),
-                PointFactory.createFigure(2, 0)
-        };
+    private static void dataGeneration(){
+        pointList.add(PointFactory.createFigure(0, 0));
+        pointList.add(PointFactory.createFigure(0, 2));
+        pointList.add(PointFactory.createFigure(2, 2));
+        pointList.add(PointFactory.createFigure(2, 0));
 
-        List<Point> mas = new ArrayList<>();
-        mas.add(PointFactory.createFigure(0, 0));
+        try{
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.LINE, pointList.get(0), pointList.get(1)));
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.LINE, pointList.get(1), pointList.get(2)));
 
-        try {
-            lineMas = new Figure[]{
-                    figureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
-                    figureFactory.createFigure(FigureType.LINE, pointMas[1], pointMas[2])
-            };
-        } catch(FigureException e){
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.TRIANGLE, pointList.get(0),
+                    pointList.get(1), pointList.get(2)));
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.TRIANGLE, pointList.get(1),
+                    pointList.get(2), pointList.get(3)));
+
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.SQUARE, pointList.get(0),
+                    pointList.get(1), pointList.get(2), pointList.get(3)));
+
+            figureList.add(figureCrudService.createFigure(figureFactory, FigureType.MULTIANGLE, pointList.get(0),
+                    pointList.get(1), pointList.get(2), pointList.get(3), PointFactory.createFigure(4, 7)));
+
+        } catch(FigureException e) {
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
             e.printStackTrace();
-        }
-
-        try {
-            triangleMas = new Figure[]{
-                    figureFactory.createFigure(FigureType.TRIANGLE, pointMas[0], pointMas[1], pointMas[2]),
-                    figureFactory.createFigure(FigureType.TRIANGLE, pointMas[1], pointMas[2], pointMas[3])
-            };
-        }
-        catch(FigureException e){
-            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
-            e.printStackTrace();
-        }
-
-        try {
-            squareMas = new Figure[]{
-                    figureFactory.createFigure(FigureType.SQUARE, pointMas[0], pointMas[1], pointMas[2], pointMas[3])
-            };
-        }
-        catch (FigureException e){
-            logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
-            e.printStackTrace();
-        }
-    }
-
-    private static void cycleInfoOut(){
-        int i = 0;
-        do {
-            logger.log(Level.INFO, "Point #" + (i + 1) + " is " + pointMas[i].toString());
-            i++;
-        } while(i < 4);
-
-        for (i = 0; i < 2; i++){
-            if (lineMas[i].equalityCheck()){
-                logger.log(Level.ERROR, "Object " + lineMas[i].toString() + " can't be a figure line");
-            } else {
-                logger.log(Level.INFO, "Line has points " + lineMas[i].toString());
-            }
-        }
-
-        for (i = 0; i < 2; i++){
-            if ((triangleMas[i].equalityCheck())) {
-                logger.log(Level.ERROR, "Object " + triangleMas[i].toString() + " can't be a figure triangle");
-            } else {
-                if (!triangleMas[i].validationCheck()){
-                    logger.log(Level.ERROR, "Triangle " + triangleMas[i].toString() + " can't exist");
-                } else {
-                    logger.log(Level.INFO, "Triangle has points " + triangleMas[i].toString());
-                }
-            }
-        }
-
-        for (i = 0; i < 1; i++){
-            if (squareMas[i].equalityCheck()){
-                logger.log(Level.ERROR, "Object " + squareMas[i].toString() + " can't be a figure square");
-            } else {
-                if (!squareMas[i].validationCheck()){
-                    logger.log(Level.ERROR, "Object " + squareMas[i].toString() + " isn't a square");
-                } else {
-                    logger.log(Level.INFO, "Square has points " + squareMas[i].toString());
-                }
-            }
         }
     }
 }

@@ -14,7 +14,7 @@ public final class SimpleFigureFactory implements FigureFactory {
         return instance;
     }
 
-    private FigureStorage figureStorage = FigureStorage.getInstance();
+    private FigureCache figureStorage = FigureCache.getInstance();
 
     @Override
     public Figure createFigure(FigureType type, Point ... figureConstituents) throws FigureException {

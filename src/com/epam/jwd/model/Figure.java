@@ -4,7 +4,7 @@ import com.epam.jwd.strategy.Strategy;
 
 public abstract class Figure {
     private Strategy figurePropertiesStrategy;
-    private final Point[] points = {};
+    private Point[] points = {};
 
     public boolean equalityCheck() {
         return true;
@@ -22,4 +22,7 @@ public abstract class Figure {
         return points;
     }
 
+    public void setPoints(Point[] points) {
+        this.points = points;
+    }
 }

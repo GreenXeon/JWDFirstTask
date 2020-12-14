@@ -5,15 +5,17 @@ import com.epam.jwd.factory.FigureFactory;
 import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.FigureType;
 import com.epam.jwd.model.Point;
-import com.epam.jwd.model.SimpleFigureFactory;
-import com.epam.jwd.service.FigurePostProcessor;
 import com.epam.jwd.service.FigurePreProcessor;
-import com.epam.jwd.service.impl.FigureExistencePostProcessor;
 import com.epam.jwd.service.impl.FigureExistencePreProcessor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PreProcessingFactory extends FigureFactoryDecorator {
+    private List<FigurePreProcessor> preProcessors = new ArrayList<FigurePreProcessor>() {{
+        add(FigureExistencePreProcessor.getInstance());
+    }};
     private FigureFactory figureFactory;
-    private FigurePreProcessor[] preProcessors = new FigurePreProcessor[]{FigureExistencePreProcessor.getInstance()};
 
     public PreProcessingFactory(FigureFactory figureFactory) {
         this.figureFactory = figureFactory;

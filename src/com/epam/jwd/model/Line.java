@@ -4,18 +4,8 @@ import com.epam.jwd.strategy.LineInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
 
 public class Line extends Figure {
-    private Point firstPoint;
-    private Point secondPoint;
-    private final Point[] points;
+    private Point[] points;
     public static Strategy figurePropertiesStrategy = LineInfoStrategy.INSTANCE;
-
-    public Point getFirstPoint() {
-        return firstPoint;
-    }
-
-    public Point getSecondPoint() {
-        return secondPoint;
-    }
 
     Line(Point[] points){
         this.points = points;
@@ -23,6 +13,10 @@ public class Line extends Figure {
 
     public Point[] getPoints() {
         return points;
+    }
+
+    public void setPoints(Point[] points) {
+        this.points = points;
     }
     @Override
     public boolean equalityCheck(){

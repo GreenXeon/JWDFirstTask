@@ -9,8 +9,15 @@ import com.epam.jwd.model.SimpleFigureFactory;
 import com.epam.jwd.service.FigurePostProcessor;
 import com.epam.jwd.service.impl.FigureExistencePostProcessor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PostProcessingFactory extends FigureFactoryDecorator {
-    private FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{FigureExistencePostProcessor.getInstance()};
+    //private FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{FigureExistencePostProcessor.getInstance()};
+    private List<FigurePostProcessor> postProcessors = new ArrayList<FigurePostProcessor>() {{
+        add(FigureExistencePostProcessor.getInstance());
+    }};
+
     private FigureFactory figureFactory;
 
     public PostProcessingFactory(FigureFactory figureFactory) {

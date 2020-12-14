@@ -4,24 +4,12 @@ import com.epam.jwd.strategy.Strategy;
 import com.epam.jwd.strategy.TriangleInfoStrategy;
 
 public class Triangle extends Figure {
-    private Point firstPoint;
-    private Point secondPoint;
-    private Point thirdPoint;
     public static Strategy figurePropertiesStrategy = TriangleInfoStrategy.getInstance();
+    private Point[] points;
 
-    public Point getFirstPoint() {
-        return firstPoint;
+    public void setPoints(Point[] points) {
+        this.points = points;
     }
-
-    public Point getSecondPoint() {
-        return secondPoint;
-    }
-
-    public Point getThirdPoint() {
-        return thirdPoint;
-    }
-
-    private final Point[] points;
 
     public Point[] getPoints() {
         return points;

@@ -1,7 +1,7 @@
 package com.epam.jwd.model;
 
 public class MultiAngleFigure extends Figure {
-    private final Point[] points;
+    private Point[] points;
 
     MultiAngleFigure(Point ... points){
         this.points = points;
@@ -9,6 +9,10 @@ public class MultiAngleFigure extends Figure {
 
     public Point[] getPoints() {
         return points;
+    }
+
+    public void setPoints(Point[] points) {
+        this.points = points;
     }
 
     @Override
