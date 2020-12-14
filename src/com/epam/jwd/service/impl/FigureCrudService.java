@@ -7,7 +7,9 @@ import com.epam.jwd.model.FigureType;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.service.FigureCrud;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class FigureCrudService implements FigureCrud {
@@ -30,6 +32,19 @@ public final class FigureCrudService implements FigureCrud {
         figureStorage.put(index, createdFigure);
         index++;
         return createdFigure;
+    }
+
+    @Override
+    public List<Figure> createMultiFigure(int amountOfFigures, FigureFactory factory, FigureType type, Point... points) throws FigureException {
+        Figure createdFigure;
+        List<Figure> listOfFigures = new ArrayList<>();
+        for ( int i = 0; i < amountOfFigures; i++){
+            createdFigure = factory.createFigure(type, points);
+            figureStorage.put(index, createdFigure);
+            listOfFigures.add(createdFigure);
+            index++;
+        }
+        return listOfFigures;
     }
 
     @Override

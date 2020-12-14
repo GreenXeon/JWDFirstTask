@@ -4,27 +4,7 @@ import com.epam.jwd.strategy.SquareInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
 
 public class Square extends Figure{
-    private Point firstPoint;
-    private Point secondPoint;
-    private Point thirdPoint;
-    private Point fourthPoint;
     public static Strategy figurePropertiesStrategy = SquareInfoStrategy.getInstance();
-
-    public Point getFirstPoint() {
-        return firstPoint;
-    }
-
-    public Point getSecondPoint() {
-        return secondPoint;
-    }
-
-    public Point getThirdPoint() {
-        return thirdPoint;
-    }
-
-    public Point getFourthPoint() {
-        return fourthPoint;
-    }
 
     private Point[] points;
 

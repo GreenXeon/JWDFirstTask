@@ -66,6 +66,7 @@ public class Main {
             figureList.add(figureCrudService.createFigure(figureFactory, FigureType.MULTIANGLE, pointList.get(0),
                     pointList.get(1), pointList.get(2), pointList.get(3), PointFactory.createFigure(4, 7)));
 
+            //figureList.add(figureCrudService.createMultiFigure(3, figureFactory, FigureType.LINE, pointList.get(1), pointList.get(2)));
         } catch(FigureException e) {
             logger.log(Level.ERROR, "Exception has been raised: " + e.toString());
             e.printStackTrace();
