@@ -27,7 +27,6 @@ public final class FigureExistencePostProcessor implements FigurePostProcessor {
         int equalX = 1;
         int equalY = 1;
         Point[] points = figure.getPoints();
-        boolean different = true;
         for(int i = 0; i < figure.numOfPoints()-1; i++){
             for (int j = i+1; j < figure.numOfPoints(); j++){
                 if (points[i].getX() == points[j].getX()){

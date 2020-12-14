@@ -1,7 +1,8 @@
 package com.epam.jwd.model;
 
-import com.epam.jwd.exception.FigureException;
-import com.epam.jwd.exception.FigureNotExistException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 final class FigureStorage {
     private static FigureStorage instance;
@@ -14,16 +15,18 @@ final class FigureStorage {
         return instance;
     }
 
-    private static Figure[] allCreatedFigures = new Figure[64];
-    private static int amountOfFigures = 0;
+    private static List<Figure> allCreatedFigures = new ArrayList<>();
 
-    Figure popFromCacheOrCreateFigure(FigureType type, Point... points) throws FigureNotExistException {
+    Figure popFromCacheOrCreateFigure(FigureType type, Point... points) {
         int equalPointCounter = 0;
-        Figure toReturn = null;
+        Figure toReturn;
+        Iterator<Figure> figureIterator = allCreatedFigures.iterator();
+        Figure currentFigure;
 
-        for(Figure cachedFigure : allCreatedFigures){
-            if (cachedFigure!= null && cachedFigure.numOfPoints() == points.length){
-                Point[] arrCached = cachedFigure.getPoints();
+        while(figureIterator.hasNext()){
+            currentFigure = figureIterator.next();
+            if (currentFigure.numOfPoints() == points.length){
+                Point[] arrCached = currentFigure.getPoints();
                 for (Point newPoint : points){
                     for (Point cachedPoint : arrCached){
                         if (newPoint == cachedPoint){
@@ -32,7 +35,7 @@ final class FigureStorage {
                     }
                 }
                 if (equalPointCounter == points.length){
-                    return cachedFigure;
+                    return currentFigure;
                 }
             }
         }
@@ -52,8 +55,7 @@ final class FigureStorage {
             default:
                 throw new IllegalArgumentException("Wrong figure name: " + type);
         }
-        allCreatedFigures[amountOfFigures] = toReturn;
-        amountOfFigures++;
+        allCreatedFigures.add(toReturn);
         return toReturn;
     }
 }

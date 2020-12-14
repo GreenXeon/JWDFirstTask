@@ -16,6 +16,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -73,6 +75,10 @@ public class Main {
                 PointFactory.createFigure(2, 2),
                 PointFactory.createFigure(2, 0)
         };
+
+        List<Point> mas = new ArrayList<>();
+        mas.add(PointFactory.createFigure(0, 0));
+
         try {
             lineMas = new Figure[]{
                     figureFactory.createFigure(FigureType.LINE, pointMas[0], pointMas[1]),
