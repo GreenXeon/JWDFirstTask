@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostProcessingFactory extends FigureFactoryDecorator {
-    //private FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{FigureExistencePostProcessor.getInstance()};
-    private List<FigurePostProcessor> postProcessors = new ArrayList<FigurePostProcessor>() {{
+    private List<FigurePostProcessor> postProcessors = new ArrayList<>() {{
         add(FigureExistencePostProcessor.getInstance());
     }};
 

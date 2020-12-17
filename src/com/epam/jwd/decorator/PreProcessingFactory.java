@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreProcessingFactory extends FigureFactoryDecorator {
-    private List<FigurePreProcessor> preProcessors = new ArrayList<FigurePreProcessor>() {{
+    private List<FigurePreProcessor> preProcessors = new ArrayList<>() {{
         add(FigureExistencePreProcessor.getInstance());
     }};
     private FigureFactory figureFactory;

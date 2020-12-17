@@ -26,19 +26,11 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public boolean equalityCheck() {
-        return ((this.getPoints()[0].equals(this.getPoints()[1]))
-                || (this.getPoints()[0].equals(this.getPoints()[2]))
-                || (this.getPoints()[1].equals(this.getPoints()[2])));
-    }
-
-    @Override
     public boolean validationCheck() {
         double firstSide = Math.sqrt(Math.pow(this.getPoints()[1].getX() - this.getPoints()[0].getX(), 2) +
                 Math.pow(this.getPoints()[1].getY() - this.getPoints()[0].getY(), 2));
         double secondSide = Math.sqrt(Math.pow(this.getPoints()[2].getX() - this.getPoints()[0].getX(), 2) +
                 Math.pow(this.getPoints()[2].getY() - this.getPoints()[0].getY(), 2));
-        ;
         double thirdSide = Math.sqrt(Math.pow(this.getPoints()[2].getX() - this.getPoints()[1].getX(), 2) +
                 Math.pow(this.getPoints()[2].getY() - this.getPoints()[1].getY(), 2));
         return (firstSide + secondSide > thirdSide) && (firstSide + thirdSide > secondSide)

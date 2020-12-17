@@ -5,10 +5,12 @@ import com.epam.jwd.factory.FigureFactory;
 import com.epam.jwd.model.ApplicationContext;
 import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.FigureType;
+import com.epam.jwd.model.Line;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.model.PointFactory;
 import com.epam.jwd.service.impl.FigureCrudService;
 import com.epam.jwd.strategy.LineInfoStrategy;
+import com.epam.jwd.strategy.MultiAngleInfoStrategy;
 import com.epam.jwd.strategy.SquareInfoStrategy;
 import com.epam.jwd.strategy.Strategy;
 import com.epam.jwd.strategy.TriangleInfoStrategy;
@@ -31,7 +33,7 @@ public class Main {
     public static void main(String[] args) {
         dataGeneration();
         strategyContextTest();
-        Figure sample = figureCrudService.findById(0);
+        //Figure sample = figureCrudService.findById(0);
     }
 
     private static void strategyContextTest()
@@ -43,6 +45,7 @@ public class Main {
         logger.log(Level.INFO, dF.format(currentStrategy.findPerimeter(figureList.get(2))));
         currentStrategy = SquareInfoStrategy.getInstance();
         logger.log(Level.INFO, dF.format(currentStrategy.findSquare(figureList.get(4))));
+        logger.log(Level.INFO, dF.format(MultiAngleInfoStrategy.getInstance().findPerimeter(figureList.get(5))));
     }
 
     private static void dataGeneration(){
@@ -59,12 +62,11 @@ public class Main {
                     pointList.get(1), pointList.get(2)));
             figureList.add(figureCrudService.createFigure(figureFactory, FigureType.TRIANGLE, pointList.get(1),
                     pointList.get(2), pointList.get(3)));
-
             figureList.add(figureCrudService.createFigure(figureFactory, FigureType.SQUARE, pointList.get(0),
                     pointList.get(1), pointList.get(2), pointList.get(3)));
 
             figureList.add(figureCrudService.createFigure(figureFactory, FigureType.MULTIANGLE, pointList.get(0),
-                    pointList.get(1), pointList.get(2), pointList.get(3), PointFactory.createFigure(4, 7)));
+                    pointList.get(1), pointList.get(2), pointList.get(3)));
 
             //figureList.add(figureCrudService.createMultiFigure(3, figureFactory, FigureType.LINE, pointList.get(1), pointList.get(2)));
         } catch(FigureException e) {

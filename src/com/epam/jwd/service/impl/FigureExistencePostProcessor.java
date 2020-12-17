@@ -37,7 +37,7 @@ public final class FigureExistencePostProcessor implements FigurePostProcessor {
                 }
             }
         }
-        if (equalX == figure.numOfPoints() || equalY == figure.numOfPoints()){ //todo:multiangles
+        if (equalX == figure.numOfPoints() || equalY == figure.numOfPoints() || !figure.validationCheck()){ //todo:multiangles
             throw new FigureNotExistException("Figure can't exist");
         }
         return figure;

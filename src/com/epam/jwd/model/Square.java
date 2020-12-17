@@ -27,16 +27,6 @@ public class Square extends Figure{
     }
 
     @Override
-    public boolean equalityCheck(){
-       return ((this.getPoints()[0].equals(this.getPoints()[1]))
-                || (this.getPoints()[0].equals(this.getPoints()[2]))
-                || (this.getPoints()[0].equals(this.getPoints()[3]))
-                || (this.getPoints()[1].equals(this.getPoints()[2]))
-                || (this.getPoints()[1].equals(this.getPoints()[3]))
-                || (this.getPoints()[2].equals(this.getPoints()[3])));
-    }
-
-    @Override
     public boolean validationCheck(){
         double firstSide = Math.sqrt(Math.pow(this.getPoints()[1].getX() - this.getPoints()[0].getX(), 2) +
                 Math.pow(this.getPoints()[1].getY() - this.getPoints()[0].getY(), 2));

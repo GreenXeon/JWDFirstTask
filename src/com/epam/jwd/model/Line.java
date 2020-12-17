@@ -18,10 +18,6 @@ public class Line extends Figure {
     public void setPoints(Point[] points) {
         this.points = points;
     }
-    @Override
-    public boolean equalityCheck(){
-        return this.getPoints()[0].equals(this.getPoints()[1]);
-    }
 
     @Override
     public String toString(){
