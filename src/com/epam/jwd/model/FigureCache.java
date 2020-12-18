@@ -1,6 +1,7 @@
 package com.epam.jwd.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,7 +27,7 @@ final class FigureCache {
         while(figureIterator.hasNext()){
             currentFigure = figureIterator.next();
             if (currentFigure.numOfPoints() == points.length){
-                Point[] arrCached = currentFigure.getPoints();
+                List<Point> arrCached = currentFigure.getPoints();
                 for (Point newPoint : points){
                     for (Point cachedPoint : arrCached){
                         if (newPoint == cachedPoint){
@@ -41,13 +42,13 @@ final class FigureCache {
         }
         switch (type){
             case LINE:
-                toReturn = new Line(points);
+                toReturn = new Line(Arrays.asList(points));
                 break;
             case TRIANGLE:
-                toReturn = new Triangle(points);
+                toReturn = new Triangle(Arrays.asList(points));
                 break;
             case SQUARE:
-                toReturn = new Square(points);
+                toReturn = new Square(Arrays.asList(points));
                 break;
             case MULTIANGLE:
                 toReturn = new MultiAngleFigure(points);

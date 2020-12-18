@@ -14,10 +14,10 @@ public final class SimpleFigureFactory implements FigureFactory {
         return instance;
     }
 
-    private FigureCache figureStorage = FigureCache.getInstance();
+    private FigureCache figureCache = FigureCache.getInstance();
 
     @Override
     public Figure createFigure(FigureType type, Point ... figureConstituents) throws FigureException {
-        return figureStorage.popFromCacheOrCreateFigure(type, figureConstituents);
+        return figureCache.popFromCacheOrCreateFigure(type, figureConstituents);
     }
 }

@@ -7,10 +7,12 @@ import com.epam.jwd.model.FigureType;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.service.FigureCrud;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class FigureCrudService implements FigureCrud {
     private static FigureCrudService instance;
@@ -27,48 +29,75 @@ public final class FigureCrudService implements FigureCrud {
     private int index = 0;
 
     @Override
-    public Figure createFigure(FigureFactory factory, FigureType type, Point... points) throws FigureException {
+    public void createFigure(FigureFactory factory, FigureType type, Point... points) throws FigureException {
         Figure createdFigure = factory.createFigure(type, points);
         figureStorage.put(index, createdFigure);
         index++;
-        return createdFigure;
     }
 
     @Override
-    public List<Figure> createMultiFigure(int amountOfFigures, FigureFactory factory, FigureType type, Point... points) throws FigureException {
+    public void createMultiFigure(int amountOfFigures, FigureFactory factory, FigureType type, Point... points) throws FigureException {
         Figure createdFigure;
-        List<Figure> listOfFigures = new ArrayList<>();
-        for ( int i = 0; i < amountOfFigures; i++){
-            createdFigure = factory.createFigure(type, points);
+        createdFigure = factory.createFigure(type, points);
+        for (int i = 0; i < amountOfFigures; i++){
             figureStorage.put(index, createdFigure);
-            listOfFigures.add(createdFigure);
             index++;
         }
-        return listOfFigures;
     }
 
     @Override
-    public Figure deleteFigure(int id) {
-        figureStorage.remove(id);
-        return null;
+    public void deleteFigure(Figure figure) {
+        Integer key = 0;
+        for (Map.Entry<Integer, Figure> entry : figureStorage.entrySet()){
+            if (figure.equals(entry.getValue())){
+                key = entry.getKey();
+                break;
+            }
+        }
+        figureStorage.remove(key);
     }
 
     @Override
-    public Figure updateFigure(int id, Point ... points) {
+    public void updateFigure(int id, Point ... points) throws FigureException {
         Figure figure = figureStorage.get(id);
-        figure.setPoints(points);
+        if (figure.getPoints().size() != points.length){
+            throw new FigureException("Quantities of points are not equal");
+        }
+        figure.setPoints(Arrays.asList(points));
         figureStorage.put(id, figure);
-        return null;
     }
 
     @Override
-    public Figure findFigure() {
-        return null;
+    public List<Figure> findByCriteria(FigureCriteria figureCriteria) {
+        return  figureStorage.values()
+                .stream()
+                .filter(figure -> figure.getPoints().equals(figureCriteria.getPoints()) || figureCriteria.getPoints() == null)
+                .filter(figure -> figure.getType().equals(figureCriteria.getFigureType()) || figureCriteria.getFigureType() == null)
+                .filter(figure -> figure.getFigurePropertiesStrategy().equals(figureCriteria.getFigureStrategy()) || figureCriteria.getFigureStrategy() == null)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Figure findById(int id) {
-        System.out.println(figureStorage.get(id));
-        return figureStorage.get(id);
+        Optional<Figure> figureOptional = figureStorage.entrySet()
+                .stream()
+                .filter(s -> s.getKey() == id)
+                .map(Map.Entry::getValue)
+                .findFirst();
+        return figureOptional.orElseThrow();
+    }
+
+    @Override
+    public Figure findFigure(Figure figure) {
+        Optional <Figure> figureOptional = figureStorage.values()
+                .stream()
+                .filter(v -> v.equals(figure))
+                .findFirst();
+        return figureOptional.orElseThrow();
+    }
+
+
+    public Map<Integer, Figure> getFigureStorage() {
+        return figureStorage;
     }
 }
